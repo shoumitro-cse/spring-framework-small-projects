@@ -1,0 +1,7 @@
+ import jar file from netbeen library
+
+1. Spring Framework 4.0.1
+2. Spring4 Web MVC 4.0.1
+3. JSTL1.2.1
+4. mysql-connector-java-5.1.23-bin.jar => from local computer
+5. commons-fileupload.jar and commons-io.jar file  => from local computer

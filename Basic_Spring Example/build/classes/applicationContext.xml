@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    
+    <!--For only Student-->
+    <bean id="studentbean" class="com.javatpoint.Student">
+         <property name="name" value="Shoumitro Roy"></property>
+         <constructor-arg value="10" type="int"></constructor-arg>  
+         <constructor-arg  value="Roy" type="String"></constructor-arg>         
+    </bean>
+    
+    
+    <!--For Address and Employee-->
+    <bean id="addr" class="com.javatpoint.Address" >
+        <constructor-arg value="#123" type="String"></constructor-arg>
+        <constructor-arg value="Rangpur" type="String"></constructor-arg>
+        <constructor-arg value="R.K Road" type="String"></constructor-arg>
+        <constructor-arg value="Bangladesh" type="String"></constructor-arg>
+    </bean>
+    
+    <bean id="emp" class="com.javatpoint.Employee" >
+        <constructor-arg value="100" type="int"></constructor-arg>
+        <constructor-arg value="Rahim" type="String"></constructor-arg>
+        <constructor-arg>
+            <ref bean="addr" />
+        </constructor-arg>
+    </bean>
+
+
+  <!--For Question, Answer, User-->
+    <bean id="answer1" class="com.javatpoint.Answer">  
+        <constructor-arg value="1"></constructor-arg>  
+        <constructor-arg value="Java is a Programming Language"></constructor-arg>  
+        <constructor-arg value="12/12/2001"></constructor-arg>  
+    </bean>  
+    
+    <bean id="answer2" class="com.javatpoint.Answer">  
+        <constructor-arg value="2"></constructor-arg>  
+        <constructor-arg value="Java is a Platform"></constructor-arg>  
+        <constructor-arg value="12/12/2003"></constructor-arg>  
+    </bean>  
+
+    <bean id="user1" class="com.javatpoint.User">  
+        <constructor-arg value="1"></constructor-arg>  
+        <constructor-arg value="Arun Kumar"></constructor-arg>  
+        <constructor-arg value="arun@gmail.com"></constructor-arg>  
+    </bean> 
+     
+    <bean id="user2" class="com.javatpoint.User">  
+        <constructor-arg value="2"></constructor-arg>  
+        <constructor-arg value="Varun Kumar"></constructor-arg>  
+        <constructor-arg value="Varun@gmail.com"></constructor-arg>  
+    </bean>  
+
+    <bean id="q" class="com.javatpoint.Question">  
+        <constructor-arg value="1"></constructor-arg>  
+        <constructor-arg value="What is Java?"></constructor-arg>  
+        <constructor-arg>  
+            <map>  
+                <entry key-ref="answer1" value-ref="user1"></entry>  
+                <entry key-ref="answer2" value-ref="user2"></entry>  
+            </map>  
+        </constructor-arg>  
+    </bean>  
+
+    <!--For A-->
+    <bean id="obj" class="com.javatpoint.A"></bean>  
+    
+   
+   <!--For => com.javatpoint.BeforeAdvisor-->
+<!--    <bean id="ba" class="com.javatpoint.BeforeAdvisor"></bean>
+      
+       <bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">  
+           <property name="target" ref="obj"></property> 
+           <property name="interceptorNames">  
+               <list>  
+                   <value>ba</value>  
+               </list>  
+           </property>  
+       </bean>  
+    -->
+    
+
+</beans>

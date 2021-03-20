@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">-->
+      
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+    xmlns:aop="http://www.springframework.org/schema/aop"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+    http://www.springframework.org/schema/aop   
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">  
+
+<!--    <bean id="opBean" class="com.javatpoint.Operation">   </bean>  
+    <bean id="trackMyBean" class="com.javatpoint.TrackOperation"></bean>  
+      
+    <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"></bean> -->
+
+   <aop:aspectj-autoproxy />  
+
+   <!--This section always add both annotation or xml for Spring AOP(Aspect Oriented Programming)-->
+   <bean id="opBean" class="com.javatpoint.Operation">   </bean>  
+   <bean id="trackAspect" class="com.javatpoint.TrackOperation"></bean>  
+
+   
+   <!--This section also handle by annotation-->
+   <aop:config>  
+     <aop:aspect id="myaspect" ref="trackAspect" >  
+        <aop:pointcut id="pointCutBeforeId" expression="execution(* com.javatpoint.Operation.*(..))" />  
+        <!-- @Before -->  
+        <!--<aop:before method="myadvice" pointcut-ref="pointCutBeforeId" />-->  
+        <!--<aop:after method="myadvice" pointcut-ref="pointCutBeforeId" />-->  
+        <!--<aop:around method="myadvice" pointcut-ref="pointCutBeforeId" />-->  
+        <!--<aop:after-throwing method="myadvice" throwing="error" pointcut-ref="pointCutBeforeId" />-->  
+        <aop:after-returning method="myadvice" returning="result" pointcut-ref="pointCutBeforeId" />  
+     </aop:aspect>  
+   </aop:config>  
+
+</beans>
+
+
+<!--aop:before It is applied before calling the actual business logic method.
+aop:after It is applied after calling the actual business logic method.
+aop:after-returning it is applied after calling the actual business logic method. It can be used to intercept the return value in advice.
+aop:around It is applied before and after calling the actual business logic method.
+aop:after-throwing It is applied if actual business logic method throws exception.-->
